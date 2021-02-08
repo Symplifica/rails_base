@@ -1,0 +1,8 @@
+es:
+  activerecord:
+    models:
+      article: Articulos
+    attributes:
+      article:
+        content: "Contenido"
+        state: "Estado"

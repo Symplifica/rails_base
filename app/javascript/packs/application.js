@@ -16,7 +16,7 @@ ActiveStorage.start()
 // import "@hotwired/turbo-rails"
 // import "../controllers"
 // import 'alpine-turbo-drive-adapter'
-// require('alpinejs')
+require('alpinejs')
 
 // CSS
 import "../css/application.css"
