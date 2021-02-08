@@ -12,7 +12,8 @@
     "alpinejs": "^2.7.3",
     "autoprefixer": "^9.0.0",
     "postcss": "^8.1.12",
-    "tailwindcss": "^2.0.3"
+    "tailwindcss": "^2.0.3",
+    "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
