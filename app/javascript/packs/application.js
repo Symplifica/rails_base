@@ -4,10 +4,17 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+
+// import "@hotwired/turbo-rails"
+// import "../controllers"
+// import 'alpine-turbo-drive-adapter'
+// require('alpinejs')
+
+// CSS
+import "../css/application.css"
+
+
+// import Turbolinks from "turbolinks"

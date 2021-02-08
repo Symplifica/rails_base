@@ -36,6 +36,7 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/forms'),
-        require('@alexcarpenter/tailwindcss-aria')
+        require('@alexcarpenter/tailwindcss-aria'),
+        require('@tailwindcss/aspect-ratio'),
     ]
 }
