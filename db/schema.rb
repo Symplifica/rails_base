@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_170218) do
+ActiveRecord::Schema.define(version: 2021_02_09_171303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,37 @@ ActiveRecord::Schema.define(version: 2021_02_08_170218) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "table_remotes", force: :cascade do |t|
+    t.string "tde"
+    t.string "nde"
+    t.string "dsrs"
+    t.string "dstd"
+    t.string "dsnd"
+    t.string "dspn"
+    t.string "dssn"
+    t.string "dspa"
+    t.string "dssa"
+    t.string "dsnr"
+    t.string "fenr"
+    t.string "np"
+    t.string "novedad_retiro"
+    t.boolean "is_process", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "table_symplis", force: :cascade do |t|
+    t.string "dta"
+    t.string "dna"
+    t.string "dte"
+    t.string "dne"
+    t.string "nde"
+    t.string "np"
+    t.boolean "is_arus"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,0 +1,116 @@
+main[class="lg:col-span-9 xl:col-span-6"]
+  div[class="px-4 sm:px-0"]
+    div[class="sm:hidden"]
+      label[for="question-tabs" class="sr-only"]Select a tab
+      select[id="question-tabs" class="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-rose-500 focus:ring-rose-500"]
+        option[value="#/recent"]Recent
+        option[value="#/most-liked"]Most Liked
+        option[value="#/most-answers"]Most Answers
+    div[class="hidden sm:block"]
+      nav[class="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Tabs"]
+
+        a[href="#" aria-current="page" class="text-gray-900 rounded-l-lg  group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"]
+          span Recent
+          span[aria-hidden="true" class="bg-rose-500 absolute inset-x-0 bottom-0 h-0.5"]
+
+
+        a[href="#" aria-current="false" class="text-gray-500 hover:text-gray-700   group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"]
+          span Most Liked
+          span[aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"]
+
+
+        a[href="#" aria-current="false" class="text-gray-500 hover:text-gray-700  rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"]
+          span Most Answers
+          span[aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"]
+
+
+    div
+      = line_chart [{ name: "Liquidaciones que estan en Arus y que tenemos en Symplifica", data:TableSympli.where(is_arus: true).group_by_month(:nde).count },
+              { name: "Liquidaciones que NO estan en Arus y que tenemos en Symplifica", data: TableSympli.where(is_arus: false).group_by_month(:nde).count}]
+    div
+      = pie_chart [["Las que estan en Arus y tenemos en Symplifica",TableRemote.where(is_process: true, novedad_retiro: 'SI').count ],
+              ["Las que estan en Arus y NO tenemos en Symplifica", TableRemote.where(is_process: false, novedad_retiro: 'SI').count]]
+
+    div[class="flex flex-col"]
+      div[class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8"]
+        div[class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"]
+          div[class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"]
+            table[class="min-w-full divide-y divide-gray-200"]
+              thead[class="bg-gray-50"]
+                tr
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] TIPO_DOCUMENTO_EMPLEADOR
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] NUMERO_DOCUMENTO_EMPLEADOR
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] RAZON_SOCIAL
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] TIPO_DOCUMENTO
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] NUMERO_DOCUMENTO
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] PRIMER_NOMBRE
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] SEGUNDO_NOMBRE
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] PRIMER_APELLIDO
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] SEGUNDO_APELLIDO
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] NOVEDAD_RET
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] Fecha NOVEDAD_RET
+                  th[scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"] NUMERO_PLANILLA
+
+                tbody[class="bg-white divide-y divide-gray-200"]
+                - TableRemote.where(is_process: false, novedad_retiro: 'SI').each do |pila|
+                  tr
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.tde
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.nde
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dsrs
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dstd
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dsnd
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dspn
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dssn
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dspa
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dssa
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.dsnr
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"]= pila.fenr
+                    td[class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-rose-700"]= pila.np
+
+
+        /ul[class="space-y-4"]
+
+      /- @articles.each do |article|
+      / li[class="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg"]
+      /    = render article
+
+
+
+
+
+      /
+      /
+      / table
+      /   thead
+      /     tr
+      /       th Dta
+      /       th Dna
+      /       th Dte
+      /       th Dne
+      /       th Nde
+      /       th Np
+      /       th Is arus
+      /       th
+      /       th
+      /       th
+      /
+      /   tbody
+      /     - @table_symplis.each do |table_sympli|
+      /       tr
+      /         td = table_sympli.dta
+      /         td = table_sympli.dna
+      /         td = table_sympli.dte
+      /         td = table_sympli.dne
+      /         td = table_sympli.nde
+      /         td = table_sympli.np
+      /         td = table_sympli.is_arus
+      /         td = link_to 'Show', table_sympli
+      /         td = link_to 'Edit', edit_table_sympli_path(table_sympli)
+      /         td = link_to 'Destroy', table_sympli, data: { confirm: 'Are you sure?' }, method: :delete
+      /
+      / br
+      /
+      / = link_to 'New Table sympli', new_table_sympli_path
+  div[class="mt-4"]
+    h1[class="sr-only"]Recent questions
+    div

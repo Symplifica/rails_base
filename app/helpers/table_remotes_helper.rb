@@ -1,0 +1,2 @@
+module TableRemotesHelper
+end
