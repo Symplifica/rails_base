@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :table_symplis
   resources :table_remotes
   localized do
-    root 'home#index'
+    root 'table_symplis#index'
     get 'home/index'
     resources :comments
     resources :articles

@@ -42,8 +42,12 @@
  %w[andres@demo.com fer@demo.com].each do |email|
    create_user(email: email)
  end
-#
-# # Articles
+
+ %w[daniela.calvano@symplifica.com esteban.palma@symplifica.com invitado@symplifica.com].each do |email|
+   create_user(email: email)
+ end
+
+ # Articles
  100.times do
    Article.create content: Faker::Quotes::Shakespeare.hamlet_quote, user: User.all.sample
  end
@@ -93,10 +97,10 @@
    TableSympli.create!(hash)
  end
 
-TableSympli.first.delete
+ TableSympli.first.delete
 
-TableRemote.count
-TableSympli.count
+ TableRemote.count
+ TableSympli.count
 
  process = UpdateLiquidationSympli.new
  process.process
