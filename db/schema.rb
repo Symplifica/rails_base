@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2021_02_09_171303) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "rating"
     t.integer "state", default: 0
-    t.string "title"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 

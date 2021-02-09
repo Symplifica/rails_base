@@ -55,6 +55,7 @@
 
 require 'open-uri'
 require 'csv'
+
 csv_text = URI.open("https://mediasymplifica.s3.amazonaws.com/Hoja1-Table+1.csv").read
 
 csv = CSV.parse(csv_text, :headers => false)
@@ -77,4 +78,20 @@ csv.each do |row|
   TableRemote.create!(hash)
 end
 
+
+csv_text = URI.open("https://mediasymplifica.s3.amazonaws.com/table_sympli.csv").read
+csv = CSV.parse(csv_text, :headers => false)
+csv.each do |row|
+  hash = {  dta: row[0],
+            dna: row[1],
+            dte: row[2],
+            dne: row[3],
+            nde: row[4],
+            np: row[5],
+            is_arus: false
+  }
+  TableSympli.create!(hash)
+end
+
 TableRemote.count
+TableSympli.count
