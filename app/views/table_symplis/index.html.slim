@@ -1,0 +1,33 @@
+h1 Listing table_symplis
+
+table
+  thead
+    tr
+      th Dta
+      th Dna
+      th Dte
+      th Dne
+      th Nde
+      th Np
+      th Is arus
+      th
+      th
+      th
+
+  tbody
+    - @table_symplis.each do |table_sympli|
+      tr
+        td = table_sympli.dta
+        td = table_sympli.dna
+        td = table_sympli.dte
+        td = table_sympli.dne
+        td = table_sympli.nde
+        td = table_sympli.np
+        td = table_sympli.is_arus
+        td = link_to 'Show', table_sympli
+        td = link_to 'Edit', edit_table_sympli_path(table_sympli)
+        td = link_to 'Destroy', table_sympli, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Table sympli', new_table_sympli_path

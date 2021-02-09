@@ -1,0 +1,15 @@
+= simple_form_for(@table_sympli) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :dta
+    = f.input :dna
+    = f.input :dte
+    = f.input :dne
+    = f.input :nde
+    = f.input :np
+    = f.input :is_arus
+
+  .form-actions
+    = f.button :submit

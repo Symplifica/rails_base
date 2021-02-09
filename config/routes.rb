@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :table_symplis
   resources :table_remotes
   localized do
     root 'home#index'
