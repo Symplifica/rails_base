@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_171303) do
     t.string "fenr"
     t.string "np"
     t.string "novedad_retiro"
+    t.boolean "is_process", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

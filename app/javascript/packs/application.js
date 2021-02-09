@@ -17,7 +17,8 @@ ActiveStorage.start()
 // import "../controllers"
 // import 'alpine-turbo-drive-adapter'
 require('alpinejs')
-
+require("chartkick")
+require("chart.js")
 // CSS
 import "../css/application.css"
 

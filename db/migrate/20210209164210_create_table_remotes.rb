@@ -14,6 +14,7 @@ class CreateTableRemotes < ActiveRecord::Migration[6.1]
       t.string :fenr
       t.string :np
       t.string :novedad_retiro
+      t.boolean :is_process, default: false
 
       t.timestamps
     end

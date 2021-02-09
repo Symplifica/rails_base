@@ -12,6 +12,7 @@
 #  dssn           :string
 #  dstd           :string
 #  fenr           :string
+#  is_process     :boolean          default(FALSE)
 #  nde            :string
 #  novedad_retiro :string
 #  np             :string
