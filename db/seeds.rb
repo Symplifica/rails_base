@@ -60,19 +60,19 @@ csv_text = URI.open("https://mediasymplifica.s3.amazonaws.com/Hoja1-Table+1.csv"
 csv = CSV.parse(csv_text, :headers => false)
 csv.each do |row|
   row_processed = row[0].split(";")
-  hash = { dsnd: row_processed[0],
-           dsnr: row_processed[1],
-           dspa: row_processed[2],
-           dspn: row_processed[3],
-           dsrs: row_processed[4],
-           dssa: row_processed[5],
-           dssn: row_processed[6],
-           dstd: row_processed[7],
-           fenr: row_processed[8],
-           nde: row_processed[9],
-           novedad_retiro: row_processed[10],
-           np: row_processed[11],
-           tde: row_processed[12]
+  hash = {  tde: row_processed[0],
+            nde: row_processed[1],
+            dsrs: row_processed[2],
+            dstd: row_processed[3],
+            dsnd: row_processed[4],
+            dspn: row_processed[5],
+            dssn: row_processed[6],
+            dspa: row_processed[7],
+            dssa: row_processed[8],
+            dsnr: row_processed[9],
+            fenr: row_processed[10],
+            np: row_processed[11],
+            novedad_retiro: row_processed[12]
   }
   TableRemote.create!(hash)
 end
