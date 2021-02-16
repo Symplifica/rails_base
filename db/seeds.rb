@@ -60,7 +60,7 @@
  require 'open-uri'
  require 'csv'
 
- csv_text = URI.open("https://mediasymplifica.s3.amazonaws.com/Hoja1-Table+1.csv").read
+ csv_text = URI.open("https://mediasymplifica.s3.amazonaws.com/Informacio%CC%81n+Symplifica_2020.csv").read
 
  csv = CSV.parse(csv_text, :headers => false)
  csv.each do |row|
