@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Phone number:
+  = @ticket.phone_number
+p
+  strong Email:
+  = @ticket.email
+p
+  strong Category:
+  = @ticket.category
+p
+  strong Details:
+  = @ticket.details
+
+=> link_to 'Edit', edit_ticket_path(@ticket)
+'|
+=< link_to 'Back', tickets_path

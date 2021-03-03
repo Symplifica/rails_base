@@ -1,0 +1,12 @@
+= simple_form_for(@ticket) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :phone_number
+    = f.input :email
+    = f.input :category
+    = f.input :details
+
+  .form-actions
+    = f.button :submit
