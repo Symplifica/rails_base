@@ -9,6 +9,8 @@
     div[class="col-span-3 sm:col-span-2"]
       = f.input :email, input_html: { class: "focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300" }
     div[class="col-span-3 sm:col-span-2"]
+      = f.association :status, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
+    div[class="col-span-3 sm:col-span-2"]
       = f.input :details, as: :text, input_html: {class: "focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"}
     div[class="col-span-3 sm:col-span-2"]
       = f.association :area, input_html: {class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"}

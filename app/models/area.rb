@@ -9,4 +9,5 @@
 #
 
 class Area < ApplicationRecord
+  has_many :tickets
 end

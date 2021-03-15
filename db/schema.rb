@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_034821) do
+ActiveRecord::Schema.define(version: 2021_03_15_050207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 2021_03_15_034821) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.boolean "closed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "kind", default: 0
+  end
+
   create_table "table_remotes", force: :cascade do |t|
     t.string "tde"
     t.string "nde"
@@ -81,9 +89,11 @@ ActiveRecord::Schema.define(version: 2021_03_15_034821) do
     t.bigint "category_id"
     t.bigint "agent_id"
     t.bigint "area_id"
+    t.bigint "status_id"
     t.index ["agent_id"], name: "index_tickets_on_agent_id"
     t.index ["area_id"], name: "index_tickets_on_area_id"
     t.index ["category_id"], name: "index_tickets_on_category_id"
+    t.index ["status_id"], name: "index_tickets_on_status_id"
   end
 
   create_table "users", force: :cascade do |t|

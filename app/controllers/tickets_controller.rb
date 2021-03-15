@@ -9,10 +9,11 @@ class TicketsController < ApplicationController
       if @tickets.any?
         @ticket = @tickets.results.last
       else
+        status = Status.general.where(name: "Abierto").first_or_create
         agent = Agent.where(name: "Agente no especifica").first_or_create
         area = Area.where(name: "Area no especifica").first_or_create
         category = Category.where(name: " Categoria no especifica").first_or_create
-        @ticket = Ticket.where(phone_number: @q, category: category, area: area, agent: agent).first_or_create
+        @ticket = Ticket.where(phone_number: @q, category: category, area: area, agent: agent, status: status).first_or_create
       end
       redirect_to edit_ticket_path(@ticket)
     end
@@ -78,6 +79,6 @@ class TicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.require(:ticket).permit(:phone_number, :email, :details, :name, :area_id, :category_id, :agent_id)
+      params.require(:ticket).permit(:phone_number, :email, :details, :name, :area_id, :category_id, :agent_id, :status_id)
     end
 end

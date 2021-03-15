@@ -12,12 +12,14 @@
 #  agent_id     :bigint
 #  area_id      :bigint
 #  category_id  :bigint
+#  status_id    :bigint
 #
 # Indexes
 #
 #  index_tickets_on_agent_id     (agent_id)
 #  index_tickets_on_area_id      (area_id)
 #  index_tickets_on_category_id  (category_id)
+#  index_tickets_on_status_id    (status_id)
 #
 
 class Ticket < ApplicationRecord
@@ -29,6 +31,7 @@ class Ticket < ApplicationRecord
   belongs_to :category
   belongs_to :agent
   belongs_to :area
+  belongs_to :status
 
   def search_data
     attributes.merge(custom_data)
@@ -39,8 +42,8 @@ class Ticket < ApplicationRecord
       category_name: category.nil? ? "sin categoria" : category.name,
       agent_name: agent.nil? ? "sin agente" : agent.name,
       area_name: area.nil? ? "sin area" : area.name,
+      status_name: status.nil? ? "sin status" : status.name,
       # products: products.count
     }
   end
-
 end
