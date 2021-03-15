@@ -12,9 +12,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
 // import "@hotwired/turbo-rails"
-// import "../controllers"
 // import 'alpine-turbo-drive-adapter'
 require('alpinejs')
 require("chartkick")
@@ -23,3 +21,5 @@ require("chart.js")
 import "../css/application.css"
 
 
+
+import "controllers"

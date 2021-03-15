@@ -18,12 +18,6 @@ class TicketsController < ApplicationController
       redirect_to edit_ticket_path(@ticket)
     end
 
-    # reflex dynamic logic
-    # statuses = nil
-    # statuses ||= session[:statuses]
-    # statuses ||= params[:statuses]
-    # @statuses = statuses.nil? ? Status.general.where(name: ) : Status.where()
-
     @tickets = Ticket.all
   end
 
@@ -33,11 +27,35 @@ class TicketsController < ApplicationController
 
   # GET /tickets/new
   def new
-    @ticket = Ticket.new
+    @ticket ||= Ticket.new
+
+    # reflex dynamic logic
+    @area_id ||= nil
+    @area_id ||= session[:area_id]
+    @area_id ||= params[:area_id]
+    @statuses = Status.all
+
+    unless @area_id.nil?
+      @area = Area.find(@area_id)
+      @statuses = @area.statuses
+      @ticket.area = @area
+    end
+
   end
 
   # GET /tickets/1/edit
   def edit
+
+    # reflex dynamic logic
+    @area_id ||= nil
+    @area_id ||= session[:area_id]
+    @area_id ||= params[:area_id]
+    @statuses = Status.all
+    unless @area_id.nil?
+      @area = Area.find(@area_id)
+      @statuses = @area.statuses
+      @ticket.area = @area
+    end
   end
 
   # POST /tickets or /tickets.json
@@ -49,7 +67,7 @@ class TicketsController < ApplicationController
         format.html { redirect_to @ticket, notice: "Ticket was successfully created." }
         format.json { render :show, status: :created, location: @ticket }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to new_ticket_path @ticket, status: :unprocessable_entity, notice: "Ticket was successfully created." }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
@@ -62,7 +80,7 @@ class TicketsController < ApplicationController
         format.html { redirect_to @ticket, notice: "Ticket was successfully updated." }
         format.json { render :show, status: :ok, location: @ticket }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to edit_ticket_path @ticket, status: :unprocessable_entity }
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
@@ -80,7 +98,7 @@ class TicketsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
-      @ticket = Ticket.find(params[:id])
+      @ticket ||= Ticket.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
