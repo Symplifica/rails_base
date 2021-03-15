@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_025619) do
+ActiveRecord::Schema.define(version: 2021_03_15_034821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agents", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "articles", force: :cascade do |t|
     t.text "content"
@@ -23,6 +35,12 @@ ActiveRecord::Schema.define(version: 2021_03_15_025619) do
     t.string "rating"
     t.integer "state", default: 0
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -59,9 +77,13 @@ ActiveRecord::Schema.define(version: 2021_03_15_025619) do
     t.string "details"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "area"
     t.string "name"
-    t.integer "category"
+    t.bigint "category_id"
+    t.bigint "agent_id"
+    t.bigint "area_id"
+    t.index ["agent_id"], name: "index_tickets_on_agent_id"
+    t.index ["area_id"], name: "index_tickets_on_area_id"
+    t.index ["category_id"], name: "index_tickets_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|

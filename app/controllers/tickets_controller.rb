@@ -3,7 +3,6 @@ class TicketsController < ApplicationController
 
   # GET /tickets or /tickets.json
   def index
-
     unless request.params[:query].nil?
       @q = request.params[:query]
       @tickets = Ticket.search(@q)
@@ -76,6 +75,6 @@ class TicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.require(:ticket).permit(:phone_number, :email, :details, :name, :area, :category)
+      params.require(:ticket).permit(:phone_number, :email, :details, :name, :area_id, :category_id, :agent_id)
     end
 end

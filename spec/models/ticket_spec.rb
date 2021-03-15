@@ -3,14 +3,21 @@
 # Table name: tickets
 #
 #  id           :bigint           not null, primary key
-#  area         :integer
-#  category     :integer
 #  details      :string
 #  email        :string
 #  name         :string
 #  phone_number :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  agent_id     :bigint
+#  area_id      :bigint
+#  category_id  :bigint
+#
+# Indexes
+#
+#  index_tickets_on_agent_id     (agent_id)
+#  index_tickets_on_area_id      (area_id)
+#  index_tickets_on_category_id  (category_id)
 #
 require 'rails_helper'
 

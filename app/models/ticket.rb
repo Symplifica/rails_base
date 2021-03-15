@@ -3,20 +3,44 @@
 # Table name: tickets
 #
 #  id           :bigint           not null, primary key
-#  area         :integer
-#  category     :integer
 #  details      :string
 #  email        :string
 #  name         :string
 #  phone_number :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  agent_id     :bigint
+#  area_id      :bigint
+#  category_id  :bigint
+#
+# Indexes
+#
+#  index_tickets_on_agent_id     (agent_id)
+#  index_tickets_on_area_id      (area_id)
+#  index_tickets_on_category_id  (category_id)
 #
 
 class Ticket < ApplicationRecord
-  enum area: { ventas: 0, sac: 1, operaciones: 2 }
-  enum category: { cat1: 0, cat111: 1, cat11: 2 }
+  # enum area: { ventas: 0, sac: 1, operaciones: 2 }
+  # enum category: { cat1: 0, cat111: 1, cat11: 2 }
 
-  # TODO add agents...
   searchkick
+
+  belongs_to :category
+  belongs_to :agent
+  belongs_to :area
+
+  def search_data
+    attributes.merge(custom_data)
+  end
+
+  def custom_data
+    {
+      category_name: category.nil? ? "sin categoria" : category.name,
+      agent_name: agent.nil? ? "sin agente" : agent.name,
+      area_name: area.nil? ? "sin area" : area.name,
+      # products: products.count
+    }
+  end
+
 end
