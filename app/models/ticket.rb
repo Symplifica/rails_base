@@ -18,6 +18,5 @@ class Ticket < ApplicationRecord
   enum category: { cat1: 0, cat111: 1, cat11: 2 }
 
   # TODO add agents...
-
   searchkick
 end
