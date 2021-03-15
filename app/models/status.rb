@@ -4,14 +4,17 @@
 #
 #  id         :bigint           not null, primary key
 #  closed     :boolean
-#  kind       :integer          default("sac")
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  area_id    :bigint
+#
+# Indexes
+#
+#  index_statuses_on_area_id  (area_id)
 #
 class Status < ApplicationRecord
 
-  enum kind: { general: 0, sac: 1, sales: 2, ops: 3  }
-
+  belongs_to :area
   has_many :tickets
 end

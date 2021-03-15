@@ -18,6 +18,12 @@ class TicketsController < ApplicationController
       redirect_to edit_ticket_path(@ticket)
     end
 
+    # reflex dynamic logic
+    # statuses = nil
+    # statuses ||= session[:statuses]
+    # statuses ||= params[:statuses]
+    # @statuses = statuses.nil? ? Status.general.where(name: ) : Status.where()
+
     @tickets = Ticket.all
   end
 

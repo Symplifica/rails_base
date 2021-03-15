@@ -28,10 +28,10 @@ class Ticket < ApplicationRecord
 
   searchkick
 
+  belongs_to :status
   belongs_to :category
   belongs_to :agent
   belongs_to :area
-  belongs_to :status
 
   def search_data
     attributes.merge(custom_data)

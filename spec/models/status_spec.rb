@@ -4,10 +4,14 @@
 #
 #  id         :bigint           not null, primary key
 #  closed     :boolean
-#  kind       :integer          default("sac")
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  area_id    :bigint
+#
+# Indexes
+#
+#  index_statuses_on_area_id  (area_id)
 #
 require 'rails_helper'
 

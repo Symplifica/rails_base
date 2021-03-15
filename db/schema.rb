@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_050207) do
+ActiveRecord::Schema.define(version: 2021_03_15_052454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_050207) do
     t.boolean "closed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "kind", default: 0
+    t.bigint "area_id"
+    t.index ["area_id"], name: "index_statuses_on_area_id"
   end
 
   create_table "table_remotes", force: :cascade do |t|

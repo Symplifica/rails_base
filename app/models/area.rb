@@ -10,4 +10,5 @@
 
 class Area < ApplicationRecord
   has_many :tickets
+  has_many :statuses
 end

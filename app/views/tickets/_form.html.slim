@@ -1,7 +1,28 @@
 = simple_form_for(@ticket) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  div[class="grid grid-cols-1 gap-4 sm:grid-cols-2 pb-5"]
+    div[class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"]
+      div[class="flex-shrink-0"]
+        .h-12.w-12.rounded-full.bg-green-200.text-center.items-center.align-middle
+          i.fal.fa-user.fa-2x.pt-2
+      div[class="flex-1 min-w-0"]
+        a[href="#" class="focus:outline-none"]
+          span[class="absolute inset-0" aria-hidden="true"]
+          p[class="text-sm font-medium text-gray-900"]
+            | SAC
+    div[class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"]
+      div[class="flex-shrink-0"]
+        .h-12.w-12.rounded-full.bg-blue-200.text-center.items-center.align-middle
+          i.fal.fa-headset.fa-2x.pt-2
+      div[class="flex-1 min-w-0"]
+        a[href="#" class="focus:outline-none"]
+          span[class="absolute inset-0" aria-hidden="true"]
+          p[class="text-sm font-medium text-gray-900"]
+            | Ventas
   div[class="grid grid-cols-3 gap-6"]
+    /div[class="col-span-3 sm:col-span-2"]
+      = f.association :area, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
     div[class="col-span-3 sm:col-span-2"]
       = f.input :phone_number, input_html: { class: "focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300" }
     div[class="col-span-3 sm:col-span-2"]
@@ -12,8 +33,6 @@
       = f.association :status, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
     div[class="col-span-3 sm:col-span-2"]
       = f.input :details, as: :text, input_html: {class: "focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"}
-    div[class="col-span-3 sm:col-span-2"]
-      = f.association :area, input_html: {class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"}
     div[class="col-span-3 sm:col-span-2"]
       = f.association :category, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
     div[class="col-span-3 sm:col-span-2"]
