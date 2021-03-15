@@ -31,6 +31,7 @@ class TicketsController < ApplicationController
 
     # reflex dynamic logic
     @area_id ||= nil
+    @area_id ||= @ticket.area.id unless @ticket.area.nil?
     @area_id ||= session[:area_id]
     @area_id ||= params[:area_id]
     @statuses = Status.all
@@ -48,9 +49,11 @@ class TicketsController < ApplicationController
 
     # reflex dynamic logic
     @area_id ||= nil
+    @area_id ||= @ticket.area.id unless @ticket.area.nil?
     @area_id ||= session[:area_id]
     @area_id ||= params[:area_id]
     @statuses = Status.all
+
     unless @area_id.nil?
       @area = Area.find(@area_id)
       @statuses = @area.statuses
