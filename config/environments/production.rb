@@ -8,6 +8,8 @@ Rails.application.configure do
 
   config.hosts << "crm.symplifica.com"
   config.hosts << "flex.twilio.com"
+  config.hosts << "*.twillio.com"
+  config.hosts << "symplifica.herokuapp.com"
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
