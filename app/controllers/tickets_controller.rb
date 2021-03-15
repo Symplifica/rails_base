@@ -3,6 +3,18 @@ class TicketsController < ApplicationController
 
   # GET /tickets or /tickets.json
   def index
+
+    unless request.params[:query].nil?
+      @q = request.params[:query]
+      @tickets = Ticket.search(@q)
+      if @tickets.any?
+        @ticket = @tickets.results.last
+      else
+        @ticket = Ticket.where(phone_number: @q).first_or_create
+      end
+      redirect_to edit_ticket_path(@ticket)
+    end
+
     @tickets = Ticket.all
   end
 
@@ -64,6 +76,6 @@ class TicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ticket_params
-      params.require(:ticket).permit(:phone_number, :email, :category, :details)
+      params.require(:ticket).permit(:phone_number, :email, :category, :details, :name, :area, :category)
     end
 end

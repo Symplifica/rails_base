@@ -1,18 +1,11 @@
-p#notice = notice
+main[class="lg:col-span-9 xl:col-span-6"]
+  div[class="mt-4"]
+    h1[class="sr-only"]Recent Ticket
+    = link_to 'Todos los Tickets', tickets_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-blue hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    = link_to 'New Ticket', new_ticket_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-blue hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 
-p
-  strong Phone number:
-  = @ticket.phone_number
-p
-  strong Email:
-  = @ticket.email
-p
-  strong Category:
-  = @ticket.category
-p
-  strong Details:
-  = @ticket.details
+    ul[class="space-y-4"]
+      li[class="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg"]
+        = render @ticket
 
-=> link_to 'Edit', edit_ticket_path(@ticket)
-'|
-=< link_to 'Back', tickets_path
+

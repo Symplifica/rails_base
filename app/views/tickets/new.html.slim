@@ -1,5 +1,10 @@
-h1 New ticket
+main[class="lg:col-span-9 xl:col-span-6"]
+  div[class="px-4 sm:px-0"]
+    div[class="bg-white py-6 px-4 space-y-6 sm:p-6"]
+      div
+        h3[class="text-lg leading-6 font-medium text-gray-900"] Nuevo Ticket
+        p[class="mt-1 text-sm text-gray-500"] No olvides de escribir la tipifiicacion y si es SAC, Ventas o Operaciones
 
-== render 'form'
-
-= link_to 'Back', tickets_path
+      == render 'form'
+      br
+      =< link_to 'ir a Todos los Tickets', tickets_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

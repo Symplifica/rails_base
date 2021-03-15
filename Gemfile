@@ -38,6 +38,8 @@ gem "simple_form"
 
 gem "simplecov"
 
+gem 'searchkick'
+
 gem "annotate"
 
 gem "route_translator"

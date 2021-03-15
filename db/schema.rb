@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_171303) do
+ActiveRecord::Schema.define(version: 2021_03_15_025619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,21 +49,19 @@ ActiveRecord::Schema.define(version: 2021_02_09_171303) do
     t.string "fenr"
     t.string "np"
     t.string "novedad_retiro"
-    t.boolean "is_process", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "table_symplis", force: :cascade do |t|
-    t.string "dta"
-    t.string "dna"
-    t.string "dte"
-    t.string "dne"
-    t.string "nde"
-    t.string "np"
-    t.boolean "is_arus"
+  create_table "tickets", force: :cascade do |t|
+    t.string "phone_number"
+    t.string "email"
+    t.string "details"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "area"
+    t.string "name"
+    t.integer "category"
   end
 
   create_table "users", force: :cascade do |t|
