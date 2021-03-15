@@ -9,7 +9,10 @@ class TicketsController < ApplicationController
       if @tickets.any?
         @ticket = @tickets.results.last
       else
-        @ticket = Ticket.where(phone_number: @q).first_or_create
+        agent = Agent.where(name: "Agente no especifica").first_or_create
+        area = Area.where(name: "Area no especifica").first_or_create
+        category = Category.where(name: " Categoria no especifica").first_or_create
+        @ticket = Ticket.where(phone_number: @q, category: category, area: area, agent: agent).first_or_create
       end
       redirect_to edit_ticket_path(@ticket)
     end
