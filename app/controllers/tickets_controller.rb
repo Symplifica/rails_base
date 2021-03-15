@@ -9,9 +9,9 @@ class TicketsController < ApplicationController
       if @tickets.any?
         @ticket = @tickets.results.last
       else
-        status = Status.general.where(name: "Abierto").first_or_create
-        agent = Agent.where(name: "Agente no especifica").first_or_create
         area = Area.where(name: "Area no especifica").first_or_create
+        status = area.statuses.where(name: "Abierto").first_or_create
+        agent = Agent.where(name: "Agente no especifica").first_or_create
         category = Category.where(name: " Categoria no especifica").first_or_create
         @ticket = Ticket.where(phone_number: @q, category: category, area: area, agent: agent, status: status).first_or_create
       end
