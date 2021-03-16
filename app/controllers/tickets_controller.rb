@@ -17,11 +17,30 @@ class TicketsController < ApplicationController
       end
       redirect_to edit_ticket_path(@ticket)
     end
-    @area = Area.all
-    @agents = Agent.all
-    @statuses = Status.all
-    @tickets = Ticket.all.limit(10)
-    @categories = Category.all
+
+    ["status_id", "category_id", "agent_id", "area_id"].each do |var|
+      eval("
+            @#{var} ||= nil;
+            @#{var} ||= session[:#{var}];
+            @#{var} ||= params[:#{var}];
+        ")
+    end
+
+    @area ||= Area.all
+    @agents ||= @area_id.nil? ? Agent.all : Area.find(@area_id).agents
+    @statuses ||=  @area_id.nil? ? Status.all : Area.find(@area_id).statuses
+    @categories ||= @area_id.nil? ? Category.all : Area.find(@area_id).categories
+
+    [{single: "status_id", plural: "statuses"},
+     {single: "category_id", plural: "categories"},
+     {single: "agent_id", plural: "agents"}].each do |var|
+      eval("
+            @#{var[:plural]} = @#{var[:plural]}.where(id: @#{var[:single]}) unless @#{var[:single]}.nil? ;
+        ")
+    end
+
+
+    @tickets ||= Ticket.where(status: @statuses, category: @categories, agent: @agents)
   end
 
   # GET /tickets/1 or /tickets/1.json

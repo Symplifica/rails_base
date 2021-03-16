@@ -12,7 +12,7 @@ main[class="lg:col-span-9 xl:col-span-6"]
   div[class="mt-4"]
     h1[class="sr-only"]Recent Ticket
 
-    ul[class="space-y-4"]
+    ul[id="results" class="space-y-4"]
       - @tickets.each do |ticket|
         li[class="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg"]
           = render ticket

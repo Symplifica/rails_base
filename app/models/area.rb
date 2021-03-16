@@ -9,7 +9,7 @@
 #
 
 class Area < ApplicationRecord
-  has_many :tickets
+  has_many :tickets, through: :categories
   has_many :statuses
   has_many :categories
   has_many :agents
