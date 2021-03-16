@@ -41,7 +41,7 @@ div[class="px-4 mt-3 sm:px-6 lg:px-8"]
         div[class="flex-1 pl-2 py-2 text-sm truncate"]
           = select_tag :category,
                   options_for_select(@categories.map { |category| [category.name, category.id] }.prepend("Seleccionar una categoria"), ''),
-                  placeholder: "Seleccionar un Estado",
+                  placeholder: "Seleccionar una Tipificacion",
                   class: "mt-1 block w-full pl-3 pr-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md",
                   data: { reflex: "change->FilterSelector#change_category", 'reflex-root': "#results"  }
         div[class="flex-shrink-0 pr-2"]

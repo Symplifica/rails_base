@@ -1,3 +1,12 @@
+#To delete
+# Ticket.destroy_all
+# Category.destroy_all
+# Status.destroy_all
+# Agent.destroy_all
+# Area.destroy_all
+# Agent.reindex
+# Ticket.reindex
+
 sac_area = Area.where(name: "SAC").first_or_create
 sales_area = Area.where(name: "Ventas").first_or_create
 ops_area = Area.where(name: "Operaciones").first_or_create
@@ -120,13 +129,3 @@ csv = CSV.parse(csv_text, headers: false, col_sep: ';')
 csv.each do |obj|
   Ticket.create!(phone_number: obj[1], name: obj[2], email: "", details: obj.compact.join(" - "), status: status, category: lead_category, agent: check_agent(name: obj[0]))
 end
-
-# TODO Edi
-# 1. cuadrar el seed (mover los agentes de SAC a VENTAS los que correspondan) DONE
-# 2. añadir los sid_worker DONE
-# 3. En el front que llame desde CRM
-
-# TODO Andres
-# Filtro por Area en el index
-# Filtro por Agente en el index
-# Filtro por Estado en el index

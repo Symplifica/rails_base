@@ -39,7 +39,7 @@ class TicketsController < ApplicationController
         ")
     end
     @tickets ||= Ticket.where(status: @statuses, category: @categories, agent: @agents)
-    @tickets.limit(10)
+    @tickets = @tickets.limit(10)
   end
 
   # GET /tickets/1 or /tickets/1.json
