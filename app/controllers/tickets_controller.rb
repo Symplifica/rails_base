@@ -38,9 +38,8 @@ class TicketsController < ApplicationController
             @#{var[:plural]} = @#{var[:plural]}.where(id: @#{var[:single]}) unless @#{var[:single]}.nil? ;
         ")
     end
-
-
     @tickets ||= Ticket.where(status: @statuses, category: @categories, agent: @agents)
+    @tickets.limit(10)
   end
 
   # GET /tickets/1 or /tickets/1.json
