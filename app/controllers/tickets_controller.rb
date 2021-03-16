@@ -18,7 +18,7 @@ class TicketsController < ApplicationController
       redirect_to edit_ticket_path(@ticket)
     end
 
-    @tickets = Ticket.all
+    @tickets = Ticket.all.limit(10)
   end
 
   # GET /tickets/1 or /tickets/1.json

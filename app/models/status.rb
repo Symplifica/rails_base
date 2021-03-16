@@ -13,6 +13,7 @@
 #
 #  index_statuses_on_area_id  (area_id)
 #
+
 class Status < ApplicationRecord
 
   belongs_to :area

@@ -10,14 +10,12 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  agent_id     :bigint
-#  area_id      :bigint
 #  category_id  :bigint
 #  status_id    :bigint
 #
 # Indexes
 #
 #  index_tickets_on_agent_id     (agent_id)
-#  index_tickets_on_area_id      (area_id)
 #  index_tickets_on_category_id  (category_id)
 #  index_tickets_on_status_id    (status_id)
 #
@@ -31,7 +29,7 @@ class Ticket < ApplicationRecord
   belongs_to :status
   belongs_to :category
   belongs_to :agent
-  belongs_to :area
+  has_one :area, through: :category
 
   def search_data
     attributes.merge(custom_data)
