@@ -20,7 +20,6 @@ Status.where(name: "Llamar mas tarde", area: sales_area, closed: false).first_or
 Status.where(name: "Completado", area: sales_area, closed: true).first_or_create
 Status.where(name: "Perdido", area: sales_area, closed: true).first_or_create
 
-
 #= Categorias de SAC
 
 sac_categories = [
@@ -80,12 +79,11 @@ sac_agents = [
   {name: "Tatiana Collante", sid_worker: ""},
   {name: "Viviana Ramirez", sid_worker: ""},
   {name: "Wendy Ladino ", sid_worker: ""},
-  {name: "Yulieth Andrea B.", sid_worker: ""},
+  {name: "Andrea Beltran", sid_worker: ""},
   {name: "SAC no especifica", sid_worker: ""}
 ]
 
 sac_agents.each { |agent| Agent.where(name: agent[:name], area: sac_area, sid_worker: agent[:sid_worker]).first_or_create }
-
 
 #= Agentes de Ventas
 sales_agents = [
@@ -113,5 +111,15 @@ lead_category =  sales_area.categories.where(name: "Cliente Prospecto").last
 
 csv = CSV.parse(csv_text, headers: false, col_sep: ';')
 csv.each do |obj|
-  Ticket.create!(phone_number: obj[1], name: obj[2], email: "", details: obj.compact.join(" - "), status: status, category: lead_category, agent: check_agent(name: obj[1]))
+  Ticket.create!(phone_number: obj[1], name: obj[2], email: "", details: obj.compact.join(" - "), status: status, category: lead_category, agent: check_agent(name: obj[0]))
 end
+
+# TODO Edi
+# 1. cuadrar el seed (mover los agentes de SAC a VENTAS los que correspondan)
+# 2. añadir los sid_worker
+# 3. En el front que llame desde CRM
+
+# TODO Andres
+# Filtro por Area en el index
+# Filtro por Agente en el index
+# Filtro por Estado en el index

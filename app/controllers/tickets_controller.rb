@@ -3,8 +3,8 @@ class TicketsController < ApplicationController
 
   # GET /tickets or /tickets.json
   def index
-    unless request.params[:query].nil?
-      @q = request.params[:query]
+    unless request.params[:query_twillio].nil?
+      @q = request.params[:query_twillio]
       @tickets = Ticket.search(@q)
       if @tickets.any?
         @ticket = @tickets.results.last
