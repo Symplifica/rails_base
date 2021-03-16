@@ -49,47 +49,54 @@ sales_categories.each { |category| Category.where(name: category, area: sales_ar
 #= Agentes de SAC
 
 sac_agents = [
-  {name: "Andres Murcia", sid_worker: ""},
-  {name: "Eduard Yamil Quiroga", sid_worker: ""},
-  {name: "Erika Santana", sid_worker: ""},
-  {name: "Harold Morales", sid_worker: ""},
-  {name: "Jhonny Suarez", sid_worker: ""},
-  {name: "Josua Chaves", sid_worker: ""},
-  {name: "July Pineda", sid_worker: ""},
-  {name: "Karen Monroy", sid_worker: ""},
-  {name: "Laura Nicol Martinez", sid_worker: ""},
-  {name: "Marcela Torres", sid_worker: ""},
-  {name: "Martha Torres", sid_worker: ""},
-  {name: "Monica Quintero", sid_worker: ""},
-  {name: "Adriana Vanegas", sid_worker: ""},
-  {name: "Alejandro Santos", sid_worker: ""},
-  {name: "Angela Manrique", sid_worker: ""},
-  {name: "Angie Paola Pineda", sid_worker: ""},
-  {name: "Back Office Ventas", sid_worker: ""},
-  {name: "Carolina Navarro", sid_worker: ""},
-  {name: "Cristian Alexander", sid_worker: ""},
-  {name: "Derlly Vasquez", sid_worker: ""},
-  {name: "Diego Fernando R.", sid_worker: ""},
-  {name: "Dora Pinilla", sid_worker: ""},
-  {name: "Edixon Hernandez", sid_worker: ""},
-  {name: "Paula Caita", sid_worker: ""},
-  {name: "Paula Cifuentes", sid_worker: ""},
-  {name: "Saily Marcela Bernal", sid_worker: ""},
-  {name: "Sonia Castro", sid_worker: ""},
-  {name: "Tatiana Collante", sid_worker: ""},
-  {name: "Viviana Ramirez", sid_worker: ""},
-  {name: "Wendy Ladino ", sid_worker: ""},
-  {name: "Andrea Beltran", sid_worker: ""},
-  {name: "SAC no especifica", sid_worker: ""}
+  {name: "SAC no especifica", sid_worker: ""},
+  {name: "Andres Murcia", sid_worker: "WK5d8aa9c36e4368495e50e646047b6ddb"},
+  {name: "Harold Morales", sid_worker: "WKd3a02c5acf8b058be955fef5e48beb24"},
+  {name: "Jhonny Suarez", sid_worker: "WK060f79c997d77cb656b3109242987077"},
+  {name: "Marcela Torres", sid_worker: "WKb148f78fed54b0c106c8f64887126f03"},
+  {name: "Paula Caita", sid_worker: "WKfd3e776cfd43937978a0c9c700980cb0"},
+  {name: "Saily Marcela Bernal", sid_worker: "WKbef128cc2c6dfdff2d166a7447cebc4b"},
+  {name: "Angie Paola Pineda", sid_worker: "WK2807fae9926c38d5e26fae5b841478e6"},
+  {name: "Wendy Ladino ", sid_worker: "WK5f3f6c32e1a6231c73606731d8bf88e9"},
+  {name: "Alejandro Santos", sid_worker: "WK424a0afdb6541657bdca51142c579440"},
+  {name: "Dora Pinilla", sid_worker: "WKdff79ee6d386d0520f46d029636ff39a"},
+  {name: "Monica Quintero", sid_worker: "WK6c1047af8eb899e07529cd2f37fbb23a"},
+  {name: "Paula Cifuentes", sid_worker: "WK35859620ff4352b1dcbdc0d843172677"},
+  {name: "Sonia Castro", sid_worker: "WKca17d7daf64555558dd55a063e25546b"},
+  {name: "July Pineda", sid_worker: "WK3f3e5d1ccdba8c143769b184e30253a1"},
+  {name: "Erika Santana", sid_worker: "WK0ae713189c9a668877e193a8be8c17aa"},
+  {name: "Josua Chaves", sid_worker: "WK23c78c67e4bd06969ead2c260f4f8c65"},
+  {name: "Karen Monroy", sid_worker: "WK6ced9c38e003db7e3a345dcb15f8670b"}
 ]
 
 sac_agents.each { |agent| Agent.where(name: agent[:name], area: sac_area, sid_worker: agent[:sid_worker]).first_or_create }
 
 #= Agentes de Ventas
 sales_agents = [
-  {name: "Ventas no especifica", sid_worker: ""}
+  {name: "Ventas no especifica", sid_worker: ""},
+  {name: "Edixon Hernandez", sid_worker: "WKe671f21adb0f649bb17d81cf51b3d9c6"},
+  {name: "Laura Rodriguez", sid_worker: "WK301189cc90ed9f709f10fa7f3850933f"},
+  {name: "Adriana Vanegas", sid_worker: "WKd302a4eff34ad710d37f1b057dea598c"},
+  {name: "Carolina Navarro", sid_worker: "WKad9271ac8b797990f682b45a704e201d"},
+  {name: "Andrea Beltran", sid_worker: "WK175f788054f17a0ea7318a97e53360a7"},
+  {name: "Viviana Ramirez", sid_worker: "WK94a31c85599e8a5f71ce570f98886787"},
+  {name: "Tatiana Collante", sid_worker: "WK6800bcddef60c5a938a63d8cf25bb426"},
+  {name: "Eduard Yamil Quiroga", sid_worker: "WK9cfd8126c5306d17ef7b807cefc6c9b8"},
+  {name: "Derlly Vasquez", sid_worker: "WKabdb29c0f70009718e65e125aa88f785"},
+  {name: "Laura Nicol Martinez", sid_worker: "WKe0f17c8459579e9b510440ed0a289d30"},
+  {name: "Angela Manrique", sid_worker: "WK2071b66c49ec0ec3b5cc24fd8d4dd803"},
+  {name: "Diego Fernando R.", sid_worker: "WKed806bb5a67d383c4a168851e0d7eeec"},
+  {name: "Martha Torres", sid_worker: "WK56ce00f97ce53d8d095f1cd58846a969"},
+  {name: "Back Office Ventas", sid_worker: "WK450e47ec618a58ca4470b18188f931ad"},
+  {name: "Viviana Ramirez", sid_worker: "WK94024ce8324c31dc2980d825c84477a8"},
 ]
 sales_agents.each { |agent| Agent.where(name: agent[:name], area: sales_area, sid_worker: agent[:sid_worker]).first_or_create }
+
+ops_agents = [
+  {name: "Operaciones no especifica", sid_worker: ""},
+  {name: "Cristian Alexander", sid_worker: "WKcd0d9f9f6399316a024d420c4e7701d4"}
+]
+ops_agents.each { |agent| Agent.where(name: agent[:name], area: ops_area, sid_worker: agent[:sid_worker]).first_or_create }
 
 
 #= VIVIANA - IMPORTACION MASIVA
@@ -115,8 +122,8 @@ csv.each do |obj|
 end
 
 # TODO Edi
-# 1. cuadrar el seed (mover los agentes de SAC a VENTAS los que correspondan)
-# 2. añadir los sid_worker
+# 1. cuadrar el seed (mover los agentes de SAC a VENTAS los que correspondan) DONE
+# 2. añadir los sid_worker DONE
 # 3. En el front que llame desde CRM
 
 # TODO Andres
