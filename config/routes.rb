@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'reports/tipificacion'
   resources :statuses
   resources :areas
   resources :agents

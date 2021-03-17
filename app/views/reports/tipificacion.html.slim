@@ -1,0 +1,16 @@
+main[class="lg:col-span-9 xl:col-span-6"]
+  div[class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8 bg-white"]
+    div[class="flex-1 min-w-0"]
+      h1[class="text-lg font-medium leading-6 text-gray-900 sm:truncate"]
+        i.fa.fa-home.pr-3
+        | Reportes
+
+  div[class="mt-4"]
+    h1[class="sr-only"]Recent Ticket
+    - Area.all.each do |area|
+      ul[class="space-y-4"]
+        li[class="bg-white px-4 py-6 shadow sm:p-6 sm:rounded-lg"]
+          h1= area.name
+          br
+          = line_chart area.categories.map{ |category| {name: category.name, data: category.tickets.group_by_day(:created_at).count }}
+          br

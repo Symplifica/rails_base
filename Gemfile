@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem "devise"
 gem "devise-i18n"
 
+gem "groupdate"
+
 gem "slim"
 gem "slim-rails"
 
