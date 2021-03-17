@@ -1,15 +1,11 @@
 = simple_form_for(@ticket) do |f|
-  div[id="values_hidden"]
-    - unless @area_id.nil?
-      - f.object.area_id = @area.id
-      = f.hidden_field :area_id, value: @area.id
   div[id="menu_areas" class="grid grid-cols-1 gap-4 sm:grid-cols-2 pb-5"]
     div[class="relative rounded-lg border #{@area_id == Area.where(name: "SAC").first_or_create.id.to_s ?  ' border-green-300 ' : ' border-gray-300 '  }bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-green-500"]
       div[class="flex-shrink-0"]
         .h-12.w-12.rounded-full.bg-green-200.text-center.items-center.align-middle
           i.fal.fa-user.fa-2x.pt-2
       div[class="flex-1 min-w-0"]
-        a[href="#" class="focus:outline-none" data-reflex= "click->AreaChanger#change_area" data-reflex-root="#menu_areas, #status_selector, #values_hidden" data-area=Area.where(name: "SAC").first_or_create.id ]
+        a[href="#" class="focus:outline-none" data-reflex= "click->AreaChanger#change_area" data-reflex-root="#menu_areas, #status_selector, #agents_selector, #categories_selector" data-area=Area.where(name: "SAC").first_or_create.id ]
           span[class="absolute inset-0" aria-hidden="true"]
           p[class="text-sm font-medium text-gray-900"]
             | SAC
@@ -18,7 +14,7 @@
         .h-12.w-12.rounded-full.bg-blue-200.text-center.items-center.align-middle
           i.fal.fa-headset.fa-2x.pt-2
       div[class="flex-1 min-w-0"]
-        a[href="#" class="focus:outline-none" data-reflex= "click->AreaChanger#change_area" data-reflex-root="#menu_areas, #status_selector, #values_hidden" data-area=Area.where(name: "Ventas").first_or_create.id ]
+        a[href="#" class="focus:outline-none" data-reflex= "click->AreaChanger#change_area" data-reflex-root="#menu_areas, #status_selector, #agents_selector, #categories_selector" data-area=Area.where(name: "Ventas").first_or_create.id ]
           span[class="absolute inset-0" aria-hidden="true"]
           p[class="text-sm font-medium text-gray-900"]
             | Ventas
@@ -36,9 +32,9 @@
       = f.input :email, input_html: { class: "focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300" }
     div[class="col-span-3 sm:col-span-2 pt-3"]
       = f.input :details, as: :text, input_html: {class: "focus:ring-indigo-500 focus:border-indigo-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"}
-    div[class="col-span-3 sm:col-span-2 pt-3"]
-      = f.association :category, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
-    div[class="col-span-3 sm:col-span-2 pt-3"]
-      = f.association :agent, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
+    div[id="categories_selector" class="col-span-3 sm:col-span-2 pt-3"]
+      = f.association :category, collection: @categories, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
+    div[id="agents_selector" class="col-span-3 sm:col-span-2 pt-3"]
+     = f.association :agent, collection: @agents, input_html: { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" }
     div[class="col-span-3 sm:col-span-2 pt-3"]
       = f.button :submit, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-blue hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

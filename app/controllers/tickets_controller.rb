@@ -9,11 +9,11 @@ class TicketsController < ApplicationController
       if @tickets.any?
         @ticket = @tickets.results.last
       else
-        area = Area.where(name: "Area no especifica").first_or_create
-        status = area.statuses.where(name: "Abierto").first_or_create
-        agent = Agent.where(name: "Agente no especifica").first_or_create
-        category = Category.where(name: " Categoria no especifica").first_or_create
-        @ticket = Ticket.where(phone_number: @q, category: category, agent: agent, status: status).first_or_create
+        area = Area.where(name: "Area no especifica").first_or_create!
+        status = area.statuses.where(name: "Abierto").first_or_create!
+        agent = Agent.where(name: "Agente no especifica", area: area ).first_or_create!
+        category = Category.where(name: " Categoria no especifica", area: area ).first_or_create!
+        @ticket = Ticket.where(phone_number: @q, category: category, agent: agent, status: status).first_or_create!
       end
       redirect_to edit_ticket_path(@ticket)
     end
@@ -39,8 +39,8 @@ class TicketsController < ApplicationController
         ")
     end
 
-    if  request.params[:query].nil?
-      @tickets ||= Ticket.where(status: @statuses, category: @categories, agent: @agents)
+    if request.params[:query].nil? || request.params[:query_twilio].nil?
+      @tickets = Ticket.where(status: @statuses, category: @categories, agent: @agents)
       @tickets = @tickets.limit(10)
     else
       @tickets ||= Ticket.search(request.params[:query])
@@ -60,12 +60,15 @@ class TicketsController < ApplicationController
     @area_id ||= @ticket.area.id unless @ticket.area.nil?
     @area_id ||= session[:area_id]
     @area_id ||= params[:area_id]
-    @statuses = Status.all
 
-    unless @area_id.nil?
-      @area = Area.find(@area_id)
-      @statuses = @area.statuses
-      @ticket.area = @area
+    if @area_id.nil?
+      @agents = Agent.all
+      @categories = Category.all
+      @statuses = Status.all
+    else
+      @agents = Area.find(@area_id).agents
+      @categories = Area.find(@area_id).categories
+      @statuses = Area.find(@area_id).statuses
     end
 
   end
@@ -80,11 +83,16 @@ class TicketsController < ApplicationController
     @area_id ||= params[:area_id]
     @statuses = Status.all
 
-    unless @area_id.nil?
-      @area = Area.find(@area_id)
-      @statuses = @area.statuses
-      @ticket.area = @area
+    if @area_id.nil?
+      @agents = Agent.all
+      @categories = Category.all
+      @statuses = Status.all
+    else
+      @agents = Area.find(@area_id).agents
+      @categories = Area.find(@area_id).categories
+      @statuses = Area.find(@area_id).statuses
     end
+
   end
 
   # POST /tickets or /tickets.json
