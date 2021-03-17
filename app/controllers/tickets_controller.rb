@@ -3,8 +3,8 @@ class TicketsController < ApplicationController
 
   # GET /tickets or /tickets.json
   def index
-    unless request.params[:query_twillio].nil?
-      @q = request.params[:query_twillio]
+    unless request.params[:query_twilio].nil?
+      @q = request.params[:query_twilio]
       @tickets = Ticket.search(@q)
       if @tickets.any?
         @ticket = @tickets.results.last
@@ -13,7 +13,7 @@ class TicketsController < ApplicationController
         status = area.statuses.where(name: "Abierto").first_or_create
         agent = Agent.where(name: "Agente no especifica").first_or_create
         category = Category.where(name: " Categoria no especifica").first_or_create
-        @ticket = Ticket.where(phone_number: @q, category: category, area: area, agent: agent, status: status).first_or_create
+        @ticket = Ticket.where(phone_number: @q, category: category, agent: agent, status: status).first_or_create
       end
       redirect_to edit_ticket_path(@ticket)
     end
